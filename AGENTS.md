@@ -11,7 +11,7 @@ A portable agent skill implemented entirely as Markdown. The runtime artifact is
 - `SKILL.md` — the skill itself. YAML frontmatter (`name`, `version`, `description`, `compatibility`, `allowed-tools`) followed by the canonical, numbered pattern list with before/after examples. **This is the source of truth.**
 - `README.md` — for humans: installation, usage, a summary table of the patterns, and a version history.
 - `.claude-plugin/plugin.json` — optional Claude Code plugin manifest.
-- `.claude-plugin/marketplace.json` — optional single-repo marketplace entry so `/plugin marketplace add blader/humanizer` works.
+- `.claude-plugin/marketplace.json` — optional single-repo marketplace entry so `/plugin marketplace add rohanpandula/humanizer` works.
 
 ## The maintenance contract
 

@@ -2,6 +2,19 @@
 
 A portable agent skill that removes signs of AI-generated writing from text, making it sound more natural and human. It is plain Markdown, so it can run in any harness that supports skill-style instructions.
 
+## About this fork
+
+This is [Rohan Pandula's](https://github.com/rohanpandula) reader-first fork of [blader/humanizer](https://github.com/blader/humanizer), originally created by Siqi Chen and distributed under the MIT License. It keeps the upstream 33-pattern catalog and adds an editing layer adapted from [Monzo's public writing principles](https://monzo.com/tone-of-voice):
+
+- Lead with what changed, how it affects the reader, and what they need to do.
+- Prefer plain, inclusive language without stripping out useful technical terms.
+- Name responsibility in decisions, errors, and bad news.
+- Apologize directly when the speaker caused a problem, then explain the remedy.
+- Use concrete details instead of empty marketing language.
+- Match warmth and humor to the context, with no jokes in sensitive messages.
+
+The fork also tightens the preservation rules so rewrites do not invent facts, opinions, or personal anecdotes. Fork release 2.9.0 is based on upstream 2.8.2.
+
 ## Installation
 
 ### Skills CLI
@@ -9,7 +22,7 @@ A portable agent skill that removes signs of AI-generated writing from text, mak
 Install with the cross-agent skills CLI:
 
 ```bash
-npx skills add blader/humanizer
+npx skills add rohanpandula/humanizer
 ```
 
 Update an existing install:
@@ -21,13 +34,13 @@ npx skills update humanizer
 To install into every supported agent harness:
 
 ```bash
-npx skills add blader/humanizer --agent '*'
+npx skills add rohanpandula/humanizer --agent '*'
 ```
 
 To target one configured harness, pass its agent name:
 
 ```bash
-npx skills add blader/humanizer --agent <agent-name>
+npx skills add rohanpandula/humanizer --agent <agent-name>
 ```
 
 ### Claude Code plugin
@@ -35,7 +48,7 @@ npx skills add blader/humanizer --agent <agent-name>
 Claude Code users can also install Humanizer as a plugin:
 
 ```
-/plugin marketplace add blader/humanizer
+/plugin marketplace add rohanpandula/humanizer
 /plugin install humanizer@humanizer
 ```
 
@@ -48,7 +61,7 @@ Any agent harness can use the skill directly because the runtime artifact is `SK
 For example:
 
 ```bash
-git clone https://github.com/blader/humanizer.git /path/to/your/skills/humanizer
+git clone https://github.com/rohanpandula/humanizer.git /path/to/your/skills/humanizer
 ```
 
 Or, if you already have this repo cloned:
@@ -92,11 +105,24 @@ The skill will analyze your sentence rhythm, word choices, and quirks, then appl
 
 Based on [Wikipedia's "Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide, maintained by WikiProject AI Cleanup. This comprehensive guide comes from observations of thousands of instances of AI-generated text.
 
-The skill also includes a final "obviously AI generated" audit pass and a second rewrite, to catch lingering AI-isms in the first draft.
+The skill also includes a final "obviously AI generated" audit pass and a second rewrite, to catch lingering AI-isms in the first draft. Its reader-first editing layer adapts ideas from [Monzo's Writing Principles](https://monzo.com/tone-of-voice) without copying Monzo's brand voice.
 
 ### Key Insight from Wikipedia
 
 > "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
+
+## Reader-first editing principles
+
+Humanizing prose is not only a matter of removing tells. The rewrite should also help its intended reader:
+
+- Lead with the change, impact, action, or deadline before internal reasoning.
+- Use ordinary, inclusive language while keeping technical terms that add precision.
+- Name responsibility when it matters, especially for errors, decisions, and bad news.
+- Apologize plainly when the speaker caused a problem, then explain the remedy.
+- Prefer concrete details and precise verbs to empty marketing adjectives, and acknowledge genuine wins or frustrations without patronizing.
+- Match personality to the stakes: no humor in sensitive messages, light warmth in operational copy, and restrained wit in expressive or marketing prose when the source voice supports it.
+
+These principles do not authorize new facts, opinions, anecdotes, or jokes. The skill still preserves the source's meaning and voice.
 
 ## 33 Patterns Detected (with Before/After Examples)
 
@@ -174,25 +200,28 @@ The skill also includes a final "obviously AI generated" audit pass and a second
 > Would I go back? Absolutely. Lisbon isn't just a place to visit — it's a place to fall in love with, again and again. If you're dreaming of your next getaway, this is one destination that promises memories to last a lifetime. ✨
 
 **After (Humanized):**
-> I spent five days in Lisbon last October and still have mixed feelings about it. Beautiful, yes. Also harder on the knees than anyone warned me.
+> I spent five days in Lisbon and came home wanting to go back. The city won me over, sore legs and all.
 >
-> The hills are the whole story and somehow never make the brochures. My hotel was up in Alfama, which photographs beautifully and translates, in practice, to climbing what felt like a six-story staircase every time I wanted coffee. By the second day my calves had opinions. I started planning each walk around which way was downhill, which is a strange way to see a city but probably an honest one.
+> Lisbon sits along the Tagus, and its hills keep opening onto wide views of the water and rooftops. The climbs really are hard. That mix of old streets and busy city life makes the effort worth it.
 >
-> Everyone says to ride Tram 28, so I did, wedged against a stranger's backpack for forty minutes while three tour groups filmed the same corner. I would walk the route next time, or go before breakfast. The custard tarts, though, earn the fuss. I had one at a plain little place in Graça, still warm, and for about thirty seconds I understood why people build trips around pastry.
+> I rode Tram 28 through the historic neighborhoods, then ate a warm custard tart at Pastéis de Belém. The tram deserves its fame. The tart, even more.
 >
-> What I did not expect was how quiet the city gets away from the main squares. Two blocks uphill from any plaza it turns into laundry lines, chipped tile, open windows, and old men watching football with the sound turned up. That is the Lisbon I keep thinking about, not the castle.
+> What I remember best is a few steps away from the main squares: sunlit alleys, tiled facades, and locals getting on with their day. The city feels quieter there without feeling empty.
 >
-> The castle is fine. The view is great, the queue is long, and I spent more time shuffling toward the entrance than looking at anything once I got inside. If I had only two days, I would trade it for an afternoon of getting lost.
+> São Jorge Castle gives you another broad view over the rooftops. The queue was long, but I was still glad I went.
 >
-> I would go back, but in spring and with better shoes. Lisbon does not bend over backward to make things easy for you. I think I liked that, even when my legs disagreed.
+> I would return, hills and all. Next time I would spend less time ticking off the famous sights and more time wandering those side streets.
 
 ## References
 
+- [Original Humanizer repository](https://github.com/blader/humanizer) - Upstream project by Siqi Chen
 - [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) - Primary source
 - [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) - Maintaining organization
+- [Monzo Writing Principles](https://monzo.com/tone-of-voice) - Reader-first clarity, accountability, and context-sensitive tone
 
 ## Version History
 
+- **2.9.0** - Fork release based on upstream 2.8.2. Added reader-first editing principles adapted from Monzo's public writing guide: impact-first structure, plain and inclusive language, precise jargon handling, direct accountability and apologies, concrete wording, and context-sensitive humor. Expanded the active-voice and promotional-language guidance and revised the Lisbon example to preserve its supplied facts and positive stance instead of inventing details. No change to the 33-pattern catalog.
 - **2.8.2** - Replaced the full before/after example with a first-person Lisbon trip recap. The after now keeps the same topic, perspective, and rough length as the before while removing the AI tells without becoming clipped or slogan-like. No change to the 33 patterns.
 - **2.8.1** - Added cross-agent installation docs, optional Claude Code plugin packaging, and a compact secondhand-text false-positive guard. No change to the 33 patterns.
 - **2.8.0** - Added style/cadence patterns #31-33 for manufactured punchlines, aphorism formulas, and conversational rhetorical openers; expanded #20 to catch offer-to-continue chatbot closers. 33 patterns total.

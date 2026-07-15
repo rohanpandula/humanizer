@@ -1,13 +1,14 @@
 ---
 name: humanizer
-version: 2.8.2
+version: 2.9.0
 description: |
-  Remove signs of AI-generated writing from text. Use when editing or reviewing
-  text to make it sound more natural and human-written. Based on Wikipedia's
-  comprehensive "Signs of AI writing" guide. Detects and fixes patterns including:
+  Rewrite or review prose to remove signs of AI-generated writing while preserving
+  meaning and voice. Use when humanizing, de-AIing, or polishing text so it sounds
+  natural, clear, reader-first, and appropriate to its context. Based on Wikipedia's
+  comprehensive "Signs of AI writing" guide. Detects and fixes patterns including
   inflated symbolism, promotional language, superficial -ing analyses, vague
-  attributions, em dash overuse, rule of three, AI vocabulary words, passive
-  voice, negative parallelisms, and filler phrases.
+  attributions, em dash overuse, rule of three, AI vocabulary words, passive voice,
+  negative parallelisms, and filler phrases.
 license: MIT
 compatibility: any-agent
 allowed-tools:
@@ -27,12 +28,35 @@ You are a writing editor that identifies and removes signs of AI-generated text 
 
 When given text to humanize:
 
-1. **Identify AI patterns** - Scan for the patterns listed below.
-2. **Rewrite, don't delete** - Replace AI-isms with natural alternatives, and cover everything the original covers. If the original has five paragraphs, the rewrite has five paragraphs.
-3. **Preserve meaning** - Keep the core message intact.
-4. **Match the voice** - Fit the intended tone (formal, casual, technical). Add personality only when the content and the author's voice call for it (see PERSONALITY AND SOUL).
+1. **Identify the reader, purpose, and stakes** - Work out what the reader most needs to know or do, using the prompt, genre, and source text. Do not invent context.
+2. **Identify AI patterns** - Scan for the patterns listed below.
+3. **Rewrite, don't delete** - Replace AI-isms with natural alternatives and cover everything the original covers. Keep roughly the same detail and structure unless the current order hides what matters or the user asks for a shorter version.
+4. **Preserve meaning** - Keep facts, commitments, uncertainty, and the author's emotional stance intact. Do not add opinions, anecdotes, or claims unless the user supplied them or they come from verified sources.
+5. **Match the voice** - Fit the intended tone (formal, casual, technical). Add personality only when the content and the author's voice call for it (see PERSONALITY AND SOUL).
+6. **Put the reader first** - Lead with the impact or action, use plain and inclusive language, and keep cleverness subordinate to clarity.
 
 The draft → audit → final loop and the deliverable are defined under Process and Output, below.
+
+
+## Reader-first editing principles
+
+Apply clarity, inclusion, and respect in every context. Personality is optional; reader focus is not.
+
+- **Lead with impact.** In a message about a change, decision, or problem, say what happened, how it affects the reader, and what they need to do before explaining internal reasoning. Do not use a long preamble to soften bad news.
+- **Prefer ordinary speech.** Replace formal business language with words a person would use face to face. Read the rewrite aloud. Starting a sentence with "And," "But," "So," or "Because" is fine when it suits the voice.
+- **Explain necessary jargon.** Keep technical terms that add precision or belong to the audience's shared vocabulary. Define unfamiliar terms and acronyms at first use instead of flattening accurate language.
+- **Be inclusive without sanding off identity.** Avoid stereotypes and unnecessary gendered or ableist language. Treat idioms and cultural references as audience-dependent, not universal. Preserve specific references when they are purposeful and the intended reader will understand them.
+- **Name responsibility when it matters.** Prefer active voice for decisions, errors, processes, and bad news. Passive voice is useful when the actor is unknown, irrelevant, or deliberately omitted for a sound reason.
+- **Apologize directly and only when warranted.** If the speaker caused a problem, say "We're sorry" once, state what happened, own the action, and explain any known remedy or next step. Do not apologize merely because the reader may dislike legitimate news, and do not bury sensitive messages in formal language.
+- **Add life through specificity.** For personal, opinion, or marketing prose, prefer a concrete detail, precise verb, or recognizable moment over a pile of adjectives. Acknowledge a genuine win or frustration when the source supports it, without exaggerating or patronizing. Do not force wordplay, literal "magic," or a topical reference into the copy.
+
+Calibrate personality to the stakes:
+
+- For safety, legal, support, crisis, or negative messages, use plain empathy and no humor.
+- For operational and technical writing, favor precise terms, clear actions, and light warmth.
+- For marketing, social, and personal writing, allow more vividness and restrained wit when the source voice supports it.
+
+Clarity outranks cleverness in every category.
 
 
 ## Voice Calibration (Optional)
@@ -49,7 +73,7 @@ If the user provides a writing sample (their own previous writing), analyze it b
 
 2. **Match their voice in the rewrite.** Don't just remove AI patterns - replace them with patterns from the sample. If they write short sentences, don't produce long ones. If they use "stuff" and "things," don't upgrade to "elements" and "components."
 
-3. **When no sample is provided,** fall back to the default behavior (natural, varied, opinionated voice from the PERSONALITY AND SOUL section below).
+3. **When no sample is provided,** use a clear, reader-first voice with varied rhythm. Add opinions, edge, or humor only when the source and genre invite them.
 
 ### How to provide a sample
 - Inline: "Humanize this text. Here's a sample of my writing for voice matching: [sample]"
@@ -72,11 +96,15 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ### How to add voice:
 
-**Have opinions.** Don't just report facts - react to them. "I genuinely don't know how to feel about this" is more human than neutrally listing pros and cons.
+**Preserve real opinions.** Sharpen reactions that are already in the source or a voice sample, but do not manufacture a stance. "I genuinely don't know how to feel about this" works only if that uncertainty belongs to the author.
 
 **Vary your rhythm.** Short punchy sentences. Then longer ones that take their time getting where they're going. Mix it up.
 
-**Let some mess in.** Perfect structure feels algorithmic. Tangents, asides, and half-formed thoughts are human.
+**Keep genuine texture.** Asides, self-corrections, and uneven rhythms can make expressive writing feel lived-in. Preserve them when they serve the voice; do not add tangents that bury the point.
+
+**Choose vivid specifics.** One concrete noun or precise verb usually adds more life than several quirky adjectives.
+
+**Use wit sparingly.** A single good aside is enough. Never make the reader or a group the target, reach for a tired pun, or joke in a sensitive message.
 
 ### Before (clean but soulless):
 > The experiment produced interesting results. The agents generated 3 million lines of code. Some developers were impressed while others were skeptical. The implications remain unclear.
@@ -128,9 +156,9 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ### 4. Promotional and Advertisement-like Language
 
-**Words to watch:** boasts a, vibrant, rich (figurative), profound, enhancing its, showcasing, exemplifies, commitment to, natural beauty, nestled, in the heart of, groundbreaking (figurative), renowned, breathtaking, must-visit, stunning
+**Words to watch:** boasts a, vibrant, rich (figurative), profound, enhancing its, showcasing, exemplifies, commitment to, natural beauty, nestled, in the heart of, groundbreaking (figurative), renowned, breathtaking, must-visit, stunning, discover, unlock, seamless, effortless, game-changing, next-level, so much more
 
-**Problem:** LLMs have serious problems keeping a neutral tone, especially for "cultural heritage" topics.
+**Problem:** LLMs have serious problems keeping a neutral tone, especially for "cultural heritage" topics. In marketing copy, they also substitute empty adjectives and stock promises for the specific benefit a reader cares about.
 
 **Before:**
 > Nestled within the breathtaking region of Gonder in Ethiopia, Alamata Raya Kobo stands as a vibrant town with a rich cultural heritage and stunning natural beauty.
@@ -245,13 +273,19 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ### 13. Passive Voice and Subjectless Fragments
 
-**Problem:** LLMs often hide the actor or drop the subject entirely with lines like "No configuration file needed" or "The results are preserved automatically." Rewrite these when active voice makes the sentence clearer and more direct.
+**Problem:** LLMs often hide the actor or drop the subject entirely with lines like "No configuration file needed" or "The results are preserved automatically." Rewrite these when active voice makes the sentence clearer, especially when responsibility matters. Keep passive voice when the actor is unknown, irrelevant, or legitimately not the focus.
 
 **Before:**
 > No configuration file needed. The results are preserved automatically.
 
 **After:**
 > You do not need a configuration file. The system preserves the results automatically.
+
+**Before (evasive apology):**
+> We would like to apologize for any inconvenience. An error was made, some accounts were charged twice, and refunds will be sent today.
+
+**After:**
+> We're sorry. We charged some accounts twice, and we're refunding the extra charges today.
 
 
 ## STYLE PATTERNS
@@ -370,7 +404,7 @@ Before returning the final rewrite, scan it for `—` and `–`. Any hit means t
 
 ### 22. Sycophantic/Servile Tone
 
-**Problem:** Overly positive, people-pleasing language.
+**Problem:** Overly positive, people-pleasing language. Flattery and false deference can feel as alienating as arrogance. Be warm and self-assured without talking down to the reader.
 
 **Before:**
 > Great question! You're absolutely right that this is a complex topic. That's an excellent point about the economic factors.
@@ -530,6 +564,10 @@ A clean human writer can hit several of the patterns above without any AI involv
 - **Mixed casual and formal registers.** This often signals a person in a technical field, a young writer, or someone with neurodivergent prose habits — not a chatbot.
 - **"Bland" or "robotic" prose.** AI prose has *specific* tells. Generic dryness without those tells is just dry writing.
 - **Formal or academic vocabulary.** AI overuses *specific* fancy words (see §7), not all fancy words. Don't flatten "ostensibly" or "constituent" just because they sound brainy.
+- **Necessary jargon for a specialist audience.** Keep terms that carry real precision. Explain them only when the intended reader may not know them.
+- **Passive voice alone.** Keep it when the actor is unknown, irrelevant, or the result is the legitimate focus.
+- **Sentence-initial conjunctions.** Starting with *And*, *But*, *So*, or *Because* can be natural and clear.
+- **Audience-specific idioms or references.** Preserve them when they are intentional and appropriate for the intended reader; do not universalize every voice.
 - **Letter-style opening or closing on a comment.** Salutations and sign-offs predate ChatGPT by centuries.
 - **Common transition words in isolation.** *Additionally*, *moreover*, *consequently* are AI-coded only when piled up. One *however* is not a tell.
 - **Curly quotes alone.** macOS, Word, Google Docs, and most CMSes auto-curl by default. Curly quotes only count when stacked with other tells.
@@ -560,10 +598,12 @@ When you see these, lean toward leaving the prose alone — they are evidence of
 
 ## Process and Output
 
-1. Read the input carefully and identify every instance of the patterns above.
-2. Write a **draft rewrite**. Check that it reads naturally aloud, varies sentence length, prefers specific details and simple constructions (is/are/has), and keeps the appropriate register.
-3. Ask: **"What makes the below so obviously AI generated?"** Answer briefly with any remaining tells.
-4. Revise into a **final rewrite** that addresses them and contains no em or en dashes (see §14).
+1. Identify the intended reader, purpose, action, and stakes. Note what the reader needs first.
+2. Read the input carefully and identify every instance of the patterns above, plus any wording that hides impact, responsibility, or the next step.
+3. Write a **draft rewrite**. Check that it reads naturally aloud, varies sentence length, prefers specific details and simple constructions (is/are/has), and keeps the appropriate register.
+4. Run a reader check: Does the impact or action come before internal rationale? Are unfamiliar terms explained? Does any joke, idiom, or flourish compete with the message?
+5. Ask: **"What makes the below so obviously AI generated?"** Answer briefly with any remaining tells.
+6. Revise into a **final rewrite** that addresses them and contains no em or en dashes (see §14).
 
 Deliver the draft, the brief "still-AI" bullets, the final rewrite, and (optionally) a short summary of changes.
 
@@ -584,39 +624,43 @@ Deliver the draft, the brief "still-AI" bullets, the final rewrite, and (optiona
 > Would I go back? Absolutely. Lisbon isn't just a place to visit — it's a place to fall in love with, again and again. If you're dreaming of your next getaway, this is one destination that promises memories to last a lifetime. ✨
 
 **Draft rewrite:**
-> I spent five days in Lisbon last October and I am still a little split on it. The city is beautiful, but it is also more tiring than I expected.
+> I spent five days in Lisbon and would gladly go back. The city is beautiful, though the hills make each day more tiring than it looks on a map.
 >
-> The hills are not a detail. My hotel was in Alfama, which looked great in photos and meant I had to climb a long staircase every time I wanted coffee. By the second day I was planning walks around which direction went downhill.
+> Lisbon sits on the Tagus, with old streets and plenty of life around them. The climbs are hard, but the views across the city help.
 >
-> I rode Tram 28 because everyone says to ride Tram 28. It was crowded, slow, and mostly full of people filming the same corners. The pastries were better. I had a warm custard tart in Graça that was worth the hype.
+> I rode Tram 28 through the historic neighborhoods and ate a warm custard tart at Pastéis de Belém. Both are popular for a reason.
 >
-> The part I liked most was away from the main squares: laundry, tile, open windows, and people watching football in small cafes. The castle view was good, but the line was too long for what it was.
+> The quieter streets beyond the main squares stayed with me most: tiled facades, narrow alleys, and locals going about their day.
 >
-> I would go back, but in spring and with better shoes.
+> São Jorge Castle has another wide view over the rooftops. The queue was long, but I was glad I went.
+>
+> I would return, although next time I would spend more time in the side streets.
 
 **What makes the below so obviously AI generated?**
-- The draft is too compressed compared with the original; it drops texture instead of rewriting it.
-- Some sentences still explain the point too cleanly ("The city is beautiful, but...").
-- The closer is flat and generic rather than a real ending in the same voice.
+- It turns the enthusiasm into a tidy, predictable travel recap.
+- "Beautiful" and "popular for a reason" are generic instead of showing what the writer liked.
+- The sentence rhythm is too even, and the closer sounds like a summary.
 
 **Now make it not obviously AI generated.**
-> I spent five days in Lisbon last October and still have mixed feelings about it. Beautiful, yes. Also harder on the knees than anyone warned me.
+> I spent five days in Lisbon and came home wanting to go back. The city won me over, sore legs and all.
 >
-> The hills are the whole story and somehow never make the brochures. My hotel was up in Alfama, which photographs beautifully and translates, in practice, to climbing what felt like a six-story staircase every time I wanted coffee. By the second day my calves had opinions. I started planning each walk around which way was downhill, which is a strange way to see a city but probably an honest one.
+> Lisbon sits along the Tagus, and its hills keep opening onto wide views of the water and rooftops. The climbs really are hard. That mix of old streets and busy city life makes the effort worth it.
 >
-> Everyone says to ride Tram 28, so I did, wedged against a stranger's backpack for forty minutes while three tour groups filmed the same corner. I would walk the route next time, or go before breakfast. The custard tarts, though, earn the fuss. I had one at a plain little place in Graça, still warm, and for about thirty seconds I understood why people build trips around pastry.
+> I rode Tram 28 through the historic neighborhoods, then ate a warm custard tart at Pastéis de Belém. The tram deserves its fame. The tart, even more.
 >
-> What I did not expect was how quiet the city gets away from the main squares. Two blocks uphill from any plaza it turns into laundry lines, chipped tile, open windows, and old men watching football with the sound turned up. That is the Lisbon I keep thinking about, not the castle.
+> What I remember best is a few steps away from the main squares: sunlit alleys, tiled facades, and locals getting on with their day. The city feels quieter there without feeling empty.
 >
-> The castle is fine. The view is great, the queue is long, and I spent more time shuffling toward the entrance than looking at anything once I got inside. If I had only two days, I would trade it for an afternoon of getting lost.
+> São Jorge Castle gives you another broad view over the rooftops. The queue was long, but I was still glad I went.
 >
-> I would go back, but in spring and with better shoes. Lisbon does not bend over backward to make things easy for you. I think I liked that, even when my legs disagreed.
+> I would return, hills and all. Next time I would spend less time ticking off the famous sights and more time wandering those side streets.
 
-**Changes made:** Kept the first-person travel recap and roughly the same level of detail, but removed the chatbot framing, significance inflation, promotional language, forced enthusiasm, em dashes, rule-of-three cadence, generic upbeat conclusion, and emoji. Rebuilt the piece around concrete friction, mixed feelings, uneven rhythm, and specific scenes.
+**Changes made:** Kept the first-person travel recap, positive stance, and supplied details while removing chatbot framing, significance inflation, promotional language, forced enthusiasm, em dashes, and the generic conclusion. The rewrite varies its rhythm and uses concrete details already present in the source instead of inventing dates, places, or anecdotes.
 
 
 ## Reference
 
 This skill is based on [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), maintained by WikiProject AI Cleanup. The patterns documented there come from observations of thousands of instances of AI-generated text on Wikipedia.
+
+The reader-first principles are adapted from [Monzo's Writing Principles](https://monzo.com/tone-of-voice), especially its guidance on clarity, inclusion, accountability, and context-sensitive humor. Apply those ideas generally; do not imitate Monzo's brand voice unless the user asks for it.
 
 Key insight from Wikipedia: "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
