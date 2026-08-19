@@ -5,7 +5,7 @@
     "name": "Rohan Pandula",
     "url": "https://github.com/rohanpandula"
   },
-  "description": "The humanizer skill, installable as a Claude Code plugin.",
+  "description": "Install Humanizer as a Claude plugin.",
   "plugins": [
     {
       "name": "humanizer",
