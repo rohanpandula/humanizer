@@ -1,4 +1,8 @@
-# Humanizer
+# Humanizer 
+
+sponsored by [cfo.ai](https://cfo.ai)
+
+[![GitHub stars](https://img.shields.io/github/stars/blader/humanizer?style=flat)](https://github.com/blader/humanizer/stargazers) [![skills.sh installs](https://skills.sh/b/blader/humanizer)](https://skills.sh/blader/humanizer) 
 
 [![GitHub stars](https://img.shields.io/github/stars/rohanpandula/humanizer?style=flat)](https://github.com/rohanpandula/humanizer/stargazers) [![skills.sh installs](https://skills.sh/b/rohanpandula/humanizer)](https://skills.sh/rohanpandula/humanizer)
 
